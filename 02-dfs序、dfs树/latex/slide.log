@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2023.1.9)  18 FEB 2023 23:09
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2023.1.9)  18 FEB 2023 23:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1262,31 +1262,35 @@ LaTeX Font Warning: Font shape `TU/SimHei(0)/b/n' undefined
 
 ]
 LaTeX Font Info:    Trying to load font information for TU+ptm on input line 10
-4.
-LaTeX Font Info:    No file TUptm.fd. on input line 104.
+5.
+LaTeX Font Info:    No file TUptm.fd. on input line 105.
 
 LaTeX Font Warning: Font shape `TU/ptm/m/n' undefined
-(Font)              using `TU/lmr/m/n' instead on input line 104.
+(Font)              using `TU/lmr/m/n' instead on input line 105.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 104
+LaTeX Font Info:    Trying to load font information for U+msa on input line 105
 .
 (d:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 104
+LaTeX Font Info:    Trying to load font information for U+msb on input line 105
 .
 (d:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 
 LaTeX Font Warning: Font shape `TU/ptm/m/it' undefined
-(Font)              using `TU/ptm/m/n' instead on input line 104.
+(Font)              using `TU/ptm/m/n' instead on input line 105.
 
 [6
 
 ]
 File: ./figure/tree.png Graphic file (type bmp)
 <./figure/tree.png>
+
+Overfull \vbox (1.91606pt too high) detected at line 110
+ []
+
 [7
 
 ] [8
@@ -1330,20 +1334,14 @@ Missing character: There is no 0 ("30) in font nullfont!
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-Package rerunfilecheck Warning: File `slide.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `slide.out':
-(rerunfilecheck)             Before: EC9449E9A47EC4525FD822517A190DF9;445
-(rerunfilecheck)             After:  BDCCAED8D99B1164D9213B773D3D94C5;528.
+Package rerunfilecheck Info: File `slide.out' has not changed.
+(rerunfilecheck)             Checksum: BDCCAED8D99B1164D9213B773D3D94C5;528.
  ) 
 Here is how much of TeX's memory you used:
- 30174 strings out of 476179
- 639825 string characters out of 5813073
- 1176992 words of memory out of 5000000
- 50293 multiletter control sequences out of 15000+600000
+ 30180 strings out of 476179
+ 639873 string characters out of 5813073
+ 1179992 words of memory out of 5000000
+ 50299 multiletter control sequences out of 15000+600000
  474761 words of font info for 64 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  99i,20n,104p,428b,885s stack positions out of 10000i,1000n,20000p,200000b,200000s

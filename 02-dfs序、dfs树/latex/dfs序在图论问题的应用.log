@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2023.1.9)  18 FEB 2023 23:13
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2023.1.9)  19 FEB 2023 14:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -609,9 +609,6 @@ LaTeX Info: Redefining \nameref on input line 38.
 
 
 
-Package hyperref Warning: Rerun to get /PageLabels entry.
-
-
 LaTeX Font Warning: Font shape `OMX/cmex/m/n' in size <10.53937> not available
 (Font)              size <10.95> substituted on input line 43.
 
@@ -627,31 +624,63 @@ Overfull \hbox (21.07874pt too wide) in paragraph at lines 64--65
 [][] 
  []
 
+(d:/texlive/2022/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2020/03/24 1.8d listings language file
+)
+(d:/texlive/2022/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2020/03/24 1.8d listings language file
+)
+(d:/texlive/2022/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
+)
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
+nput line 83.
+
+Package fontspec Info: Could not resolve font "FangSong/BI" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: Could not resolve font "FangSong/B" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: Could not resolve font "FangSong/I" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: Font family 'FangSong(0)' created for font 'FangSong'
+(fontspec)             with options [Script={CJK}].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->"FangSong/OT:script=hani;language=dflt;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
+
+ (./problem1.cpp
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <9.03374> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 1.
 LaTeX Font Info:    Font shape `TU/SimSun(0)/m/sl' in size <10.53937> not avail
 able
 (Font)              Font shape `TU/SimSun(0)/m/it' tried instead on input line 
-85.
-[2] (./dfs序在图论问题的应用.aux)
+8.
+
+[2] [3] [4] [5]) [6] (./dfs序在图论问题的应用.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.41063pt have occurred.
 
-
-Package rerunfilecheck Warning: File `dfs序在图论问题的应用.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `dfs序在图论问题的应用.out':
-(rerunfilecheck)             Before: 0B72EF23A98B239712B36A295DB34A66;423
-(rerunfilecheck)             After:  CDE4B28015217FF1ED7C13D845F121C1;334.
+Package rerunfilecheck Info: File `dfs序在图论问题的应用.out' has not changed.
+(rerunfilecheck)             Checksum: 0B72EF23A98B239712B36A295DB34A66;423.
  ) 
 Here is how much of TeX's memory you used:
- 16514 strings out of 476179
- 352951 string characters out of 5813073
- 684230 words of memory out of 5000000
- 37031 multiletter control sequences out of 15000+600000
- 476497 words of font info for 78 fonts, out of 8000000 for 9000
+ 16840 strings out of 476179
+ 356923 string characters out of 5813073
+ 1046435 words of memory out of 5000000
+ 37327 multiletter control sequences out of 15000+600000
+ 476569 words of font info for 87 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 89i,6n,97p,372b,336s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 89i,6n,97p,372b,2041s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on dfs序在图论问题的应用.pdf (2 pages).
+Output written on dfs序在图论问题的应用.pdf (6 pages).

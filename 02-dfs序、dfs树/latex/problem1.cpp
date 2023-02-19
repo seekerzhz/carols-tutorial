@@ -1,151 +1,128 @@
-#include <iostream>
-#include <cstring>
-#include <set>
-
+#include<bits/stdc++.h>
 using namespace std;
+#define rep(i,a,b) for(int i = a ; i <= b ; i++ )
+#define per(i,a,b) for(int i = a ; i >= b ; i-- )
+typedef long long ll;
+const int N = 1e5+7;
 
-typedef long long LL;
+int n;
+struct Node {
+	ll num,val;
+};
+vector<Node>tree[N];
+int cnt = 1;
+ll pos[N],d[N],dfn[N];
+void dfs(int root) {
+	for(auto &son:tree[root]) {
+		if(dfn[son.num])
+			continue;
+		dfn[son.num] = ++cnt;
+		pos[ dfn[son.num] ] = son.num;
+		d[son.num] = d[root] + son.val;
 
-const int N = 100010, M = N * 2;
-
-int n, m;
-int h[N], e[M], w[M], ne[M], idx; //邻接表
-int dep[N], fa[N][17]; //dep[i] 表示节点 i 的深度，fa[i][j] 表示节点 i 往上跳 2^j 步到达的节点
-LL dist[N]; //dist[i] 表示节点 i 到根节点的路径长度
-int q[N]; //队列
-//dfn[i] 表示节点 i 的时间戳(dfs序)
-//pos[i] 表示时间戳(dfs序)对应的节点编号
-//timestamp 表示当前用到的时间戳
-int dfn[N], pos[N], timestamp;
-set<int> S; //存储当前存在异象石的时间戳
-LL res; //记录当前的答案
-
-void add(int a, int b, int c) //添加边
-{
-e[idx] = b, w[idx] = c, ne[idx] = h[a], h[a] = idx++;
+		dfs(son.num);
+	}
+	return ;
 }
 
-void bfs() //预处理 dep[], fa[][]
-{
-dep[1] = 1;
+int dp[N][21],depth[N];
+void init(int root) {
+	rep(i,1,n) {
+		depth[i] = 0x3f3f3f3f;
+	}
+	queue<int>q;
+	q.push(root);
+	depth[root] = 1;
+	while(q.size()) {
+		auto x = q.front();
+		q.pop();
+		for(auto &son:tree[x]) {
+			if(depth[son.num] > depth[x]+1) {
+				depth[son.num] = depth[x]+1;
+				q.push(son.num);
 
-int hh = 0, tt = 0;
-q[0] = 1;
-
-while(hh <= tt)
-{
-int t = q[hh++];
-
-for(int i = h[t]; i != -1; i = ne[i])
-{
-int j = e[i];
-if(dep[j]) continue;
-
-dep[j] = dep[t] + 1;
-dist[j] = (LL)dist[t] + w[i];
-
-fa[j][0] = t;
-for(int k = 1; k <= 16; k++)
-fa[j][k] = fa[fa[j][k - 1]][k - 1];
-
-q[++tt] = j;
-}
-}
+				dp[son.num][0] = x;
+				rep(i,1,20) {
+					dp[son.num][i] = dp[ dp[son.num][i-1] ][i-1];
+				}
+			}
+		}
+	}
 }
 
-void dfs(int u, int father) //预处理 dfn[], pos[]
-{
-dfn[u] = ++timestamp;
-pos[timestamp] = u;
+int lca(int a,int b) {
+	if(depth[a] > depth[b])
+		swap(a,b);
+	// b is below a
+	per(i,20,0) {
+		if(depth[dp[b][i]] >= depth[a]) {
+			b = dp[b][i];
+		}
+	}
+	if(a==b)
+		return a;
+	per(i,20,0) {
+		if(dp[a][i] != dp[b][i]) {
+			a = dp[a][i];
+			b = dp[b][i];
+		}
+	}
+	return dp[a][0];
+}	
 
-for(int i = h[u]; i != -1; i = ne[i])
-{
-int j = e[i];
-if(j == father) continue; //防止往上回搜
-
-dfs(j, u);
-}
-}
-
-int lca(int a, int b) //求公共祖先节点
-{
-if(dep[a] < dep[b]) swap(a, b);
-
-for(int k = 16; k >= 0; k--)
-if(dep[fa[a][k]] >= dep[b])
-a = fa[a][k];
-
-if(a == b) return a;
-
-for(int k = 16; k >= 0; k--)
-if(fa[a][k] != fa[b][k])
-{
-a = fa[a][k];
-b = fa[b][k];
+ll path(int x,int y) {
+	return d[x]+d[y]-d[lca(x,y)]*2;
 }
 
-return fa[a][0];
+ll ans = 0;
+set<int>s;
+void work(ll flag,int x) {
+	auto it = s.find(x);
+	auto l = it;
+	if(l==s.begin()) {
+		l = s.end();
+	}
+	l--;
+
+	auto r = it;
+	r++;
+	if(r==s.end())
+		r = s.begin();
+
+	// 1 8 9
+	int ll = pos[*l], rr = pos[*r];
+	ans -= path(ll,rr)*flag;
+	ans += (path(ll,pos[x])+path(pos[x],rr))*flag;
 }
 
-LL path(int a, int b) //求 a, b 之间的路径长度
-{
-return dist[a] + dist[b] - 2 * dist[lca(a, b)];
-}
-
-int main()
-{
-scanf("%d", &n);
-
-memset(h, -1, sizeof h); //初始化邻接表
-
-for(int i = 0; i < n - 1; i++)
-{
-int a, b, c;
-scanf("%d%d%d", &a, &b, &c);
-add(a, b, c), add(b, a, c); //无向边
-}
-
-bfs(); //预处理 dep[], fa[][]
-dfs(1, -1); //预处理 dfn[], pos[]
-
-scanf("%d", &m);
-
-char op[2];
-int x;
-while(m--)
-{
-scanf("%s", op);
-if(op[0] == '+') //添加异象石
-{
-scanf("%d", &x);
-S.insert(dfn[x]); //将当前异象石对应的时间戳加入序列
-auto it = S.find(dfn[x]); //找到序列中当前异象石对应得时间戳所在得位置(迭代器)
-
-if(it-- == S.begin()) it = S.end(), it--; //迭代器左移(处理边界，头尾相连)
-int l = pos[*it]; //记录当前异象石左边位置的节点
-if(++it == S.end()) it = S.begin(); //迭代器右移，回到原位(处理边界，头尾相连)
-if(++it == S.end()) it = S.begin(); //迭代器右移(处理边界，头尾相连)
-int r = pos[*it]; //记录当前异象石右边位置的节点
-
-res = res - path(l, r) + path(l, x) + path(x, r); //更新答案
-}
-else if(op[0] == '-') //删除异象石
-{
-scanf("%d", &x);
-auto it = S.find(dfn[x]);
-
-if(it-- == S.begin()) it = S.end(), it--; //迭代器左移(处理边界，头尾相连)
-int l = pos[*it]; //记录当前异象石左边位置的节点
-if(++it == S.end()) it = S.begin(); //迭代器右移，回到原位(处理边界，头尾相连)
-if(++it == S.end()) it = S.begin(); //迭代器右移(处理边界，头尾相连)
-int r = pos[*it]; //记录当前异象石右边位置的节点
-
-if(it-- == S.begin()) it = S.end(), it--; //迭代器左移，回到原位(处理边界，头尾相连)
-S.erase(it); //删除当前异象石
-
-res = res + path(l, r) - path(l, x) - path(x, r); //更新答案
-}
-else printf("%lld\n", res / 2); //求答案，当前记录的答案是2倍
-}
-return 0;
+int main() {
+	scanf("%d",&n);
+	rep(i,1,n-1) {
+		int x,y,z;
+		scanf("%d%d%d",&x,&y,&z);
+		tree[x].push_back({y,z});
+		tree[y].push_back({x,z});
+	}
+	init(1);
+	pos[1] = 1,dfn[1] = 1;
+	dfs(1);
+	int m;
+	scanf("%d",&m);
+	rep(i,1,m) {
+		char ch;
+		cin >> ch;
+		if(ch=='?') {
+			printf("%lld\n",ans/2);
+		} else {
+			int x;
+			scanf("%d",&x);
+			if(ch=='+') {
+				s.insert(dfn[x]);
+				work(1,dfn[x]);
+			} else {
+				work(-1,dfn[x]);
+				s.erase(dfn[x]);
+			}
+		}
+	}
 }
